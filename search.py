@@ -1,72 +1,80 @@
 import json
-import sys
 import openai
+import numpy as np
+import pandas as pd
+import re
+from openai.embeddings_utils import cosine_similarity
 
-openai.api_key = "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"
+openai.api_key = "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"
 
-def load_classes(): 
-    return json.load(open('courses_normalized.json'))
 
-def clean_up(classes_json):
-    for i in range(len(classes_json)):
-        try: 
-            classes_json[i].pop("Subject")
-            classes_json[i].pop("Number")
-            classes_json[i].pop("ClassNumber")
-            classes_json[i].pop("CourseId")
-            classes_json[i].pop("Profs")
-            classes_json[i].pop("F22")
-            classes_json[i].pop("Days")
-            classes_json[i].pop("M")
-            classes_json[i].pop("T")
-            classes_json[i].pop("W")
-            classes_json[i].pop("R")
-            classes_json[i].pop("F")
-            classes_json[i].pop("StartTime")
-            classes_json[i].pop("EndTime")
-            classes_json[i].pop("HasSection")
-            classes_json[i].pop("AH")
-            classes_json[i].pop("Location")
-            classes_json[i].pop("URL")
-        except: 
-            continue
-    return classes_json
+def load_classes_and_embeddings():
+    """Loads the courses_normalized.json file and computes the embeddings for each course. Saves the embeddings to a new file called courses_embeddings.json."""
 
-def search(query, classes_json):
-    documents = []
-    for class_info in classes_json:
+    with open('courses_normalized.json', 'r') as f:
+        courses = json.load(f)
+
+    count = 1
+    for course in courses:
+        if count > 10:
+            break
         try:
-            document = {
-                "id": class_info["id"],
-                "text": f"{class_info['name']} - {class_info['desc']}"
-            }
-            documents.append(document)
-        except KeyError as e:
-            print(f"Error processing class_info: {class_info}. Missing key: {e}")
+            course["combined"] = "Title: " + course["Name"] + "; Description: " + course["Desc"] + "; Professors: " + \
+                course["Profs"] + "; StartTime: " + \
+                course["StartTime"] + "; EndTime: " + course["EndTime"]
+            course["embedding"] = openai.Embedding.create(
+                input=course["combined"], engine="text-embedding-ada-002")["data"][0]["embedding"]
+            print("Embedding number " + str(count) + " computed successfully!")
+            count += 1
+        except:
+            continue
 
-    response = openai.Answer.create(
-        search_model="davinci",
-        model="davinci",
-        question=query,
-        documents=documents,
-        examples_context="",
-        max_responses=1,
-        lls_model="text-davinci-002",
-        return_prompt=True,
-        return_metadata=True,
-        stop=None,
-        temperature=0.5,
-    )
-
-    most_relevant_id = response['choices'][0]['metadata']['id']
-
-    return most_relevant_id
-
-if __name__ == "__main__": 
-    classes_json = load_classes()
-    search_query = input("Enter your search query: ")
-    result = search(search_query, classes_json)
-
-    print(f"The most relevant class ID for '{search_query}' is {result}.")
+    with open('courses_embeddings.json', 'w') as f:
+        json.dump(courses, f)
 
 
+def calculate_similarity(query, query_embedding):
+    """Calculates the cosine similarity between the query and the query embedding."""
+
+    try:
+        similarity = cosine_similarity(
+            np.array(query), np.array(query_embedding))
+        if isinstance(similarity, np.ndarray):
+            return similarity[0]
+        else:
+            return similarity
+    except Exception as e:
+        print(f"Error calculating similarity: {e}")
+        return -1
+
+
+def openai_search(query, pprint=True, n=3):
+    """Searches the courses_embeddings.json file for the query and returns the top n results sorted by cosine similarity."""
+
+    df = pd.read_json('courses_embeddings.json')
+    df = df[:100]
+    query_embedding = openai.Embedding.create(
+        input=query, engine="text-embedding-ada-002")["data"][0]["embedding"]
+
+    df["similarity"] = df["embedding"].apply(
+        lambda x: calculate_similarity(x, query_embedding))
+
+    result = df.sort_values("similarity", ascending=False).head(n)
+
+    if pprint:
+        for _, r in result.iterrows():
+            print("Course Name: " + re.sub(r'<\/?p>', '', r["Name"]))
+            print("Description: " + re.sub(r'<\/?p>', '', r["Desc"]))
+            print("Professors: " + re.sub(r'<\/?p>', '', r["Profs"]))
+            print("Start Time: " + re.sub(r'<\/?p>', '', r["StartTime"]))
+            print("End Time: " + re.sub(r'<\/?p>', '', r["EndTime"]))
+            print()
+
+    return df
+
+
+if __name__ == "__main__":
+    # load_classes_and_embeddings()
+    query = input("Enter your search query: ")
+    print()
+    result = openai_search(query)
