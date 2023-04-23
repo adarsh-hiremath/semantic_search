@@ -11,9 +11,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity as sklearn_cosine_similarity
 from sklearn.feature_extraction.text import strip_accents_unicode, strip_tags
 from sklearn.feature_extraction.text import _analyze
+from fuzzywuzzy import fuzz
 
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 def load_classes_and_embeddings():
@@ -76,7 +77,6 @@ def bert_search(query, pprint=True, n=3):
     """Searches the courses_embeddings.json file for the query and returns the top n results sorted by cosine similarity using BERT."""
 
     df = pd.read_json('courses_embeddings.json')
-    df = df[:100]
     query_embedding = encode_text(query)
 
     df["similarity"] = df["embedding"].apply(
@@ -94,6 +94,26 @@ def bert_search(query, pprint=True, n=3):
             print()
 
     return df
+
+
+def fuzzy_search(query, pprint=True, n=3):
+    """Searches the courses_embeddings.json file with a fuzzy search and returns the top n results."""
+
+    df = pd.read_json('courses_combined.json')
+
+    df["similarity"] = df["combined"].apply(
+        lambda x: fuzz.token_sort_ratio(query, x))
+
+    result = df.sort_values("similarity", ascending=False).head(n)
+
+    if pprint:
+        for _, r in result.iterrows():
+            print("Course Name: " + re.sub(r'<\/?p>', '', str(r["Name"])))
+            print("Description: " + re.sub(r'<\/?p>', '', str(r["Desc"])))
+            print("Professors: " + re.sub(r'<\/?p>', '', str(r["Profs"])))
+            print("Start Time: " + re.sub(r'<\/?p>', '', str(r["StartTime"])))
+            print("End Time: " + re.sub(r'<\/?p>', '', str(r["EndTime"])))
+            print()
 
 
 def encode_text(text):
@@ -135,19 +155,33 @@ def openai_search(query, pprint=True, n=3):
 
 if __name__ == "__main__":
     # load_classes_and_embeddings()
-    print()
-    type = input("Enter 1 for OpenAI and 2 for BERT: ")
-    print()
-    if (type == "1"):
-        query = input("Enter your search query: ")
+    while (True):
         print()
-        print("Results using OpenAI:")
+        search_type = input(
+            "Enter 1 for OpenAI, 2 for BERT, and 3 for fuzzy search: ")
         print()
-        openai_result = openai_search(query)
+        if (search_type == "1"):
+            query = input("Enter your search query: ")
+            print()
+            print("Results using OpenAI:")
+            print()
+            openai_result = openai_search(query)
 
-    if (type == "2"):
-        query = input("Enter your search query: ")
-        print()
-        print("Results using BERT:")
-        print()
-        bert_result = bert_search(query)
+        elif (search_type == "2"):
+            query = input("Enter your search query: ")
+            print()
+            print("Results using BERT:")
+            print()
+            bert_result = bert_search(query)
+
+        elif (search_type == "3"):
+            query = input("Enter your search query: ")
+            print()
+            print("Results using fuzzy matching library:")
+            print()
+            fuzzy_result = fuzzy_search(query)
+
+        else:
+            print()
+            print("Please select a valid search option.")
+            print()
