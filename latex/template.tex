@@ -135,7 +135,7 @@ Each search technique varies in implementation. \texttt{text-embedding-ada-002},
 \subsection{4.1 text-embedding-ada-002}
 
 OpenAI's embedding model, \texttt{text-embedding-ad} 
-\texttt{a-002}, utilizes a transformer-based deep learning architecture to learn  embeddings. \texttt{text-embedding-ada-002} outperforms the other top models in three standard benchmarks and is useful for working with natural language and code. Semantically similar embeddings are also numerically similar, and the new embeddings endpoint in the OpenAI API provides easy access to the model used to generate embeddings. Although OpenAI offers three families of embedding models - text embeddings text search / similarity, and code search - I only used the base text embedding model for my project.
+\texttt{a-002}, utilizes a transformer-based deep learning architecture to learn  embeddings. \texttt{text-embedding-ada-002} outperforms the other top models in three standard benchmarks and is useful for working with natural language and code. Semantically similar text is also numerically similar, and the new embeddings endpoint in the OpenAI API provides easy access to the model used to generate embeddings. Although OpenAI offers three families of embedding models - text embeddings text search / similarity, and code search - I only used the base text embedding model for my project.
 
 
 \begin{figure}[h]
@@ -145,10 +145,39 @@ OpenAI's embedding model, \texttt{text-embedding-ad}
 \end{figure}
 
 
+I wanted my search to correctly identify classes based on their name, description, professors, start time, and end time. So, in a Pandas dataframe, I combined all of this information into a column called "combined." From there, generating the embedding was straightforward and required making a call to OpenAI's \texttt{text-embedding-ada-002} endpoint as follows: 
 
+\begin{python}
+	course["combined"] = "Title: " + 
+	course["Name"] + "; Description: " + 
+	course["Desc"] + "; Professors: " + \
+	course["Profs"] + "; StartTime: " + \
+	course["StartTime"] + "; EndTime: " + 
+	course["EndTime"]
+
+	course["embedding"] = 
+	openai.Embedding.create(
+	input=course["combined"], 
+	engine="text-embedding-ada-002")
+	["data"][0]["embedding"]
+\end{python}
+
+Initially, I considered combining the individual embeddings for the course name, description, professors, start time, and end time to increase the accuracy of my search with a custom formula. However, I decided against this for a couple reasons: 
+\begin{itemize}
+	\item Dimensionality: it was challenging to combine embeddings because their high dimensionality added an additional alignment step before making meaningful comparisons.
+	\item Computational expenses: combining embeddings required calling the Open AI API and doing cosine similarity more times, increasing the cost and time of the algorithm. 
+	\item Context: several papers indicated that embeddings can be sensitive to context, leading to variability in their quality and usefulness for different search tasks. Thus, combining embeddings from different sources or models can result in inconsistent or noisy results.
+\end{itemize}
 
 
 \subsection{4.2 BERT}
+
+Just like for the \texttt{text-embedding-ada-002} approach, implementing the BERT search required a similar set of steps: make a combined column, encode the text, and return results by cosine similarity. However, unlike  \texttt{text-embedding-ada-002}, BERT required some additional modifications to work properly. 
+
+BERT expects input in a specific format, where each token is mapped to a unique integer ID, and special tokens are added to denote the start and end of the input sequence. Therefore, before encoding the text using BERT, I need to tokenize the text and convert the tokens to their corresponding integer IDs.
+
+My bert\_encode function uses a custom tokenizer that is specifically designed for the course description data used in this project. The tokenizer is created by combining several standard tokenization techniques, such as lowercasing, removing stop words, and splitting on punctuation marks. Additionally, I include some domain-specific tokenization techniques to handle course codes and titles, such as splitting on parentheses, forward slashes, and colons. This helped to improve the accuracy of the BERT embeddings and, therefore, the quality of the search results.
+
 
 \subsection{4.3 Fuzzy Matching}
 

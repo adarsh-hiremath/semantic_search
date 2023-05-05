@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber template"] 1682979797 "template.bcf" "template.bbl" "template" 1683267523
-  "template.bcf" 1683267523 105726 33fa751487717f0739913cf29091b51d "pdflatex"
+["biber template"] 1683273492 "template.bcf" "template.bbl" "template" 1683273602
+  "template.bcf" 1683273602 105726 33fa751487717f0739913cf29091b51d "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
-["pdflatex"] 1683267523 "/Users/ahiremath/Desktop/semantic_search/latex/template.tex" "template.pdf" "template" 1683267523
-  "/Users/ahiremath/Desktop/semantic_search/latex/template.tex" 1683267522 9211 94d651e5b79a4362b4466e94cfdeb330 ""
+["pdflatex"] 1683273602 "/Users/ahiremath/Desktop/semantic_search/latex/template.tex" "template.pdf" "template" 1683273602
+  "/Users/ahiremath/Desktop/semantic_search/latex/template.tex" 1683273601 12040 92bf11c8947f614b3629347bff4b25dd ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -137,11 +137,11 @@
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
   "LTJournalArticle.cls" 1678791646 10062 10572277e27f770fa87f7d3d111011d3 ""
   "embedding.png" 1678791568 42023 af405c66e045b638886512ca6cfe3477 ""
-  "template.aux" 1683267523 1865 c3853f0c7b4e32be291a556672c9ab65 "pdflatex"
-  "template.bbl" 1682979798 466 ee04f40f768daeed26442158e95aba61 "biber template"
-  "template.out" 1683267523 987 792d0c9af619778b81462f876c1991dc "pdflatex"
-  "template.run.xml" 1683267523 2329 dd0b28ad5248dccc56c9d3651d0f9aad "pdflatex"
-  "template.tex" 1683267522 9211 94d651e5b79a4362b4466e94cfdeb330 ""
+  "template.aux" 1683273602 1865 297103daf98e6563169755be5f385a26 "pdflatex"
+  "template.bbl" 1683273494 466 ee04f40f768daeed26442158e95aba61 "biber template"
+  "template.out" 1683273602 987 792d0c9af619778b81462f876c1991dc "pdflatex"
+  "template.run.xml" 1683273602 2329 dd0b28ad5248dccc56c9d3651d0f9aad "pdflatex"
+  "template.tex" 1683273601 12040 92bf11c8947f614b3629347bff4b25dd ""
   (generated)
   "template.aux"
   "template.bcf"
