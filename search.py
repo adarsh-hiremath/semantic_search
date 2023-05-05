@@ -13,6 +13,7 @@ from sklearn.feature_extraction.text import strip_accents_unicode, strip_tags
 from sklearn.feature_extraction.text import _analyze
 from fuzzywuzzy import fuzz, process
 import logging
+import time
 
 
 openai.api_key = "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"
@@ -22,7 +23,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModel.from_pretrained(model_name)
 
 
-def load_classes_and_embeddings():
+def load_openai_classes_and_embeddings():
     """Loads the courses_normalized.json file and computes the embeddings for each course. Saves the embeddings to a new file called courses_embeddings.json."""
 
     with open('courses_normalized.json', 'r') as f:
@@ -44,6 +45,30 @@ def load_classes_and_embeddings():
             continue
 
     with open('courses_embeddings.json', 'w') as f:
+        json.dump(courses, f)
+
+
+def load_bert_classes_and_embeddings():
+    """Loads the courses_normalized.json file and computes the embeddings for each course. Saves the embeddings to a new file called courses_embeddings.json."""
+
+    with open('courses_normalized.json', 'r') as f:
+        courses = json.load(f)
+
+    count = 1
+    for course in courses:
+        try:
+            course["combined"] = "Title: " + course["Name"] + "; Description: " + course["Desc"] + "; Professors: " + \
+                course["Profs"] + "; StartTime: " + \
+                course["StartTime"] + "; EndTime: " + course["EndTime"]
+
+            course["embedding"] = bert_encode(course["combined"])
+
+            print("Embedding number " + str(count) + " computed successfully!")
+            count += 1
+        except:
+            continue
+
+    with open('courses_bert_embeddings.json', 'w') as f:
         json.dump(courses, f)
 
 
@@ -197,7 +222,12 @@ def openai_search(query, pprint=True, n=3):
 
 
 if __name__ == "__main__":
-    # load_classes_and_embeddings()
+    start_time = time.time()
+    load_bert_classes_and_embeddings()
+    end_time = time.time()
+    print("Time to compute BERT embeddings: " + str(end_time - start_time))
+    print()
+
     while (True):
         print()
         search_type = input(
