@@ -34,9 +34,14 @@ def load_openai_classes_and_embeddings():
         if count > 10:
             break
         try:
+            if (course["Profs"]):
+                profs = course["Profs"]
+
+            else:
+                profs = ""
+
             course["combined"] = "Title: " + course["Name"] + "; Description: " + course["Desc"] + "; Professors: " + \
-                course["Profs"] + "; StartTime: " + \
-                course["StartTime"] + "; EndTime: " + course["EndTime"]
+                profs
             course["embedding"] = openai.Embedding.create(
                 input=course["combined"], engine="text-embedding-ada-002")["data"][0]["embedding"]
             print("Embedding number " + str(count) + " computed successfully!")
@@ -55,18 +60,24 @@ def load_bert_classes_and_embeddings():
         courses = json.load(f)
 
     count = 1
+
     for course in courses:
         try:
-            course["combined"] = "Title: " + course["Name"] + "; Description: " + course["Desc"] + "; Professors: " + \
-                course["Profs"] + "; StartTime: " + \
-                course["StartTime"] + "; EndTime: " + course["EndTime"]
+            if (course["Profs"]):
+                profs = course["Profs"]
 
-            course["embedding"] = bert_encode(course["combined"])
+            else:
+                profs = ""
+
+            course["combined"] = "Title: " + course["Name"] + "; Description: " + course["Desc"] + "; Professors: " + \
+                profs
+
+            course["embedding"] = bert_encode(course["combined"]).tolist()
 
             print("Embedding number " + str(count) + " computed successfully!")
             count += 1
         except:
-            continue
+            print("Embedding for class " + course["Name"] + " failed")
 
     with open('courses_bert_embeddings.json', 'w') as f:
         json.dump(courses, f)
@@ -107,7 +118,8 @@ def calculate_similarity_bert(query, query_embedding):
 def bert_search(query, pprint=True, n=3):
     """Searches the courses_embeddings.json file for the query and returns the top n results sorted by cosine similarity using BERT."""
 
-    df = pd.read_json('courses_embeddings.json')
+    df = pd.read_json('courses_bert_embeddings.json')
+
     query_embedding = bert_encode(query)
 
     df["similarity"] = df["embedding"].apply(
@@ -125,6 +137,13 @@ def bert_search(query, pprint=True, n=3):
             print()
 
     return result
+
+
+def calculate_json_length(json_path):
+    with open(json_path, 'r') as f:
+        data = json.load(f)
+
+    return len(data)
 
 
 def fuzzy_search(query, pprint=True, n=3):
@@ -188,11 +207,13 @@ def tfidf_search(query, pprint=True, n=3):
 
 def bert_encode(text):
     """Encodes the text using BERT."""
-
-    tokens = tokenizer(text, padding=True, truncation=True,
-                       return_tensors="pt")
-    with torch.no_grad():
-        embeddings = model(**tokens).last_hidden_state[:, 0, :].numpy()
+    try:
+        tokens = tokenizer(text, padding=True, truncation=True,
+                           return_tensors="pt")
+        with torch.no_grad():
+            embeddings = model(**tokens).last_hidden_state[:, 0, :].numpy()
+    except:
+        print("Encoding " + text + " failed.")
     return embeddings[0]
 
 
@@ -227,6 +248,8 @@ if __name__ == "__main__":
     end_time = time.time()
     print("Time to compute BERT embeddings: " + str(end_time - start_time))
     print()
+
+    print(calculate_json_length('courses_bert_embeddings.json'))
 
     while (True):
         print()
