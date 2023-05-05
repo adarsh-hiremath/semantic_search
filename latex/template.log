@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  5 MAY 2023 04:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  5 MAY 2023 13:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -765,7 +765,15 @@ File: embedding.png Graphic file (type png)
 <use embedding.png>
 Package pdftex.def Info: embedding.png  used on input line 142.
 (pdftex.def)             Requested size: 230.46748pt x 198.53322pt.
-[2 <./embedding.png>] [3] (./template.aux)
+[2 <./embedding.png>]
+<fuzzy.png, id=92, 371.3875pt x 192.72pt>
+File: fuzzy.png Graphic file (type png)
+<use fuzzy.png>
+Package pdftex.def Info: fuzzy.png  used on input line 187.
+(pdftex.def)             Requested size: 230.46748pt x 119.5969pt.
+ [3 <./fuzzy.png>] [4
+
+] (./template.aux)
 Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: 792D0C9AF619778B81462F876C1991DC;987.
 Package logreq Info: Writing requests to 'template.run.xml'.
@@ -773,18 +781,18 @@ Package logreq Info: Writing requests to 'template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23468 strings out of 478268
- 402190 string characters out of 5846347
- 1411358 words of memory out of 5000000
- 41049 multiletter control sequences out of 15000+600000
- 523675 words of font info for 270 fonts, out of 8000000 for 9000
+ 23547 strings out of 478268
+ 403068 string characters out of 5846347
+ 1411430 words of memory out of 5000000
+ 41093 multiletter control sequences out of 15000+600000
+ 524344 words of font info for 279 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,82p,1052b,1996s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,82p,1052b,2033s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (3 pages, 158824 bytes).
+Output written on template.pdf (4 pages, 168929 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
- 67 named destinations out of 1000 (max. 500000)
- 79934 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 182 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 89 named destinations out of 1000 (max. 500000)
+ 79939 words of extra memory for PDF output out of 89155 (max. 10000000)
 

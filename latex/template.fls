@@ -935,6 +935,11 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/mathpazo/fplmb.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/vf/adobe/palatino/pplri9e.vf
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/adobe/palatino/pplri8r.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/mathpazo/fplmri.tfm
+INPUT ./fuzzy.png
+INPUT ./fuzzy.png
+INPUT fuzzy.png
+INPUT ./fuzzy.png
+INPUT ./fuzzy.png
 INPUT template.aux
 INPUT ./template.out
 INPUT ./template.out
