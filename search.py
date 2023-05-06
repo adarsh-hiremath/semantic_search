@@ -16,7 +16,7 @@ import logging
 import time
 
 
-openai.api_key = "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"
+openai.api_key = "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"
 logging.getLogger("transformers").setLevel(logging.CRITICAL)
 model_name = "bert-base-uncased"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -153,7 +153,7 @@ def fuzzy_search(query, pprint=True, n=3):
 
     df = pd.read_json('courses_combined.json')
 
-    df["similarity"] = df["combined"].apply(
+    df["similarity"] = df["Name"].apply(
         lambda x: fuzz.token_sort_ratio(query, x))
 
     result = df.sort_values("similarity", ascending=False).head(n)
@@ -251,7 +251,10 @@ if __name__ == "__main__":
     # print("Time to compute BERT embeddings: " + str(end_time - start_time))
     # print()
 
-    # print(calculate_json_length('courses_bert_embeddings.json'))
+    # start_time = time.time()
+    # load_openai_classes_and_embeddings()
+    # end_time = time.time()
+    # print("Time to compute OpenAI embeddings: " + str(end_time - start_time))
 
     while (True):
         print()
@@ -263,21 +266,28 @@ if __name__ == "__main__":
             print()
             print("Results using OpenAI:")
             print()
+            start_time = time.time()
             openai_result = openai_search(query)
+            end_time = time.time()
+            print("Time to search: " + str(end_time - start_time))
 
         elif (search_type == "2"):
             query = input("Enter your search query: ")
             print()
             print("Results using BERT:")
             print()
+            start_time = time.time()
             bert_result = bert_search(query)
+            end_time = time.time()
+            print("Time to search: " + str(end_time - start_time))
 
         elif (search_type == "3"):
             query = input("Enter your search query: ")
             print()
-            print("Results using fuzzy matching:")
-            print()
+            start_time = time.time()
             fuzzy_result = fuzzy_search(query)
+            end_time = time.time()
+            print("Time to search: " + str(end_time - start_time))
 
         else:
             print()

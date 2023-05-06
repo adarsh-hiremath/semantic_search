@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  5 MAY 2023 20:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  5 MAY 2023 22:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -574,11 +574,7 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 224.
 LaTeX Font Info:    Trying to load font information for T1+pplx on input line 33.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/t1pplx.fd
 File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
-) (./template.aux
-
-LaTeX Warning: Label `fig:ex1' multiply defined.
-
-)
+) (./template.aux)
 \openout1 = `template.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -764,13 +760,13 @@ Underfull \hbox (badness 1648) in paragraph at lines 137--139
 \T1/cmtt/m/n/10 text-embedding-ada-002 \T1/pplx/m/n/10 (+20) out-per-forms the other
  []
 
-<embedding.png, id=57, 434.62375pt x 374.39874pt>
+<embedding.png, id=69, 434.62375pt x 374.39874pt>
 File: embedding.png Graphic file (type png)
 <use embedding.png>
 Package pdftex.def Info: embedding.png  used on input line 142.
 (pdftex.def)             Requested size: 230.46748pt x 198.53322pt.
 [2 <./embedding.png>]
-<fuzzy.png, id=108, 371.3875pt x 192.72pt>
+<fuzzy.png, id=120, 371.3875pt x 192.72pt>
 File: fuzzy.png Graphic file (type png)
 <use fuzzy.png>
 Package pdftex.def Info: fuzzy.png  used on input line 187.
@@ -817,39 +813,70 @@ Underfull \hbox (badness 4120) in paragraph at lines 387--388
 
 [5]
 Underfull \hbox (badness 10000) in paragraph at lines 404--405
-[]\T1/cmtt/m/n/10 Christianity, Identity and Civil Society
+[]\T1/cmtt/m/n/10 Directed Study in History of Art and
  []
 
 
-Underfull \hbox (badness 1137) in paragraph at lines 410--410
-[]\T1/pplx/b/n/9 (+20) Figure 10: |\T1/pplx/m/it/9 (+20) An ex-am-ple query to the \T1/cmtt/m/it/9 text-embedding
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
+[]\T1/cmtt/m/n/10 Directed Study in History of Art and
  []
 
-[6
+
+Underfull \hbox (badness 10000) in paragraph at lines 427--428
+[]\T1/cmtt/m/n/10 Directed Study in History of Art and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
+[]\T1/cmtt/m/n/10 Directed Study in History of Art and
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 445--446
+[]\T1/cmtt/m/n/10 Introduction to African Languages and
+ []
+
+[6]
+<embeddingscal.png, id=186, 602.25pt x 372.39125pt>
+File: embeddingscal.png Graphic file (type png)
+<use embeddingscal.png>
+Package pdftex.def Info: embeddingscal.png  used on input line 467.
+(pdftex.def)             Requested size: 230.46748pt x 142.50453pt.
+<time.png, id=187, 602.25pt x 372.39125pt>
+File: time.png Graphic file (type png)
+<use time.png>
+Package pdftex.def Info: time.png  used on input line 489.
+(pdftex.def)             Requested size: 230.46748pt x 142.50453pt.
+
+Underfull \hbox (badness 1596) in paragraph at lines 493--494
+\T1/pplx/m/n/10 (+20) search steps, \T1/cmtt/m/n/10 text-embedding-ada-002 \T1/pplx/m/n/10 (+20) was the
+ []
+
+[7 <./embeddingscal.png> <./time.png>] [8
 
 ] (./template.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: D2421249C015A1479C1CE76A9EECFF25;1579.
+(rerunfilecheck)             Checksum: 436E996418F80B220FE29A08D7099A91;2170.
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23611 strings out of 478268
- 403781 string characters out of 5846347
- 1412241 words of memory out of 5000000
- 41104 multiletter control sequences out of 15000+600000
- 526548 words of font info for 309 fonts, out of 8000000 for 9000
+ 23675 strings out of 478268
+ 404523 string characters out of 5846347
+ 1412204 words of memory out of 5000000
+ 41119 multiletter control sequences out of 15000+600000
+ 528773 words of font info for 339 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,82p,1052b,2033s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfit0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (6 pages, 204884 bytes).
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfit0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on template.pdf (8 pages, 244137 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 198 compressed objects within 2 object streams
- 105 named destinations out of 1000 (max. 500000)
- 80483 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 262 PDF objects out of 1000 (max. 8388607)
+ 227 compressed objects within 3 object streams
+ 114 named destinations out of 1000 (max. 500000)
+ 80517 words of extra memory for PDF output out of 89155 (max. 10000000)
 

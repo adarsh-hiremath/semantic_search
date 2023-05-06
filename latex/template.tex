@@ -401,25 +401,119 @@ While the Levenshtein fuzzy matching approach performs well on small bodies of t
 		\texttt{}\\
 		\texttt{Output:} 
 		\begin{itemize}
-			\item \texttt{Christianity, Identity and Civil Society in African}
-			\item \texttt{Introduction to African Studies}
-			\item \texttt{Introduction to African American Studies}
+			\item \texttt{Directed Study in History of Art and Architecture}
+			\item \texttt{Directed Study in History of Art and Architecture}
+			\item \texttt{Independent Study in Genetics}
 		\end{itemize}		
 	\end{center}
+	\caption{An example query to the Levenshtein fuzzy matching search engine when searching for through the entire body of text associated with each course (course name, course description, and professor name). Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+\end{figure}
 
-	\caption{An example query to the \texttt{text-embedding} \texttt{-ada-002} search engine. Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
-	\label{fig:ex1}
+Clearly, these results are incoherent. Two of the search results are duplicates and none of them even remotely correspond to the initial search query. This is to be expected, however, since finding matching text by calculating single character differences is a lot more difficult for large bodies of text than small bodies of text. 
+
+Additionally, the fuzzy matching approach also fails when searching for the title of a specific course verbatim when the target text for each course includes the entire body of text associated with each course:
+
+\enter
+
+\enter
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{Introduction to African Popular Culture.} \\
+		\texttt{}\\
+		\texttt{Output:} 
+		\begin{itemize}
+			\item \texttt{Directed Study in History of Art and Architecture}
+			\item \texttt{Directed Study in History of Art and Architecture}
+			\item \texttt{Independent Study in Genetics}
+		\end{itemize}		
+	\end{center}
+	\caption{An example query to the Levenshtein fuzzy matching search engine when searching for through the entire body of text associated with each course (course name, course description, and professor name). Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+\end{figure}
+
+However, searching for the exact course title when the target text only includes course titles yields better results:
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{Introduction to African Popular Culture.} \\
+		\texttt{}\\
+		\texttt{Output:} 
+		\begin{itemize}
+			\item \texttt{Introduction to African Popular Culture}
+			\item \texttt{Introduction to African Languages and Cultures}
+			\item \texttt{Introduction to Pre-Columbian America}
+		\end{itemize}		
+	\end{center}
+	\caption{An example query to the Levenshtein fuzzy matching search engine when searching for through just the course titles. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+\end{figure}
+
+These results indicate that the Levenshtein fuzzy matching algorithm is far better when the text to be searched contains many individual strings of shorter length. In the above example, we see that the first result is indeed the course that we searched for. Additionally, the second best result is also the most similar match in terms of single character operations. However, none of these search results are accurate by semantic similarity because they don't search over the course description or look at words and phrases contextually.
+
+\section{6. Performance Metrics}
+
+While the above results provide a qualitative baseline for evaluating each of the search techniques, I also wanted to explore $3$ more numerical statistics to evaluate each search implementation: speed, NDCG, and code reliability. 
+
+\subsection{6.1 Speed}
+
+
+When it comes to search using text-embedding-ada-002 or BERT, the most expensive part is generating the vector embeddings to represent the search query and target text. On the other hand, the least expensive part is performing cosine similarity. 
+
+To ensure accurate semantic search, I only created embeddings for the classes that had data for both the course title and description while iterating through the data for the 8192 classes. If a course lacked a description, I skipped over it entirely. To evaluate the speed of generating the embeddings, I timed the time it took to generate the embeddings for all the classes for both \texttt{text-embedding-ada-002} and BERT. 
+
+
+\begin{figure}[h]
+    \includegraphics[width=8.1cm]{embeddingscal.png}
+    \caption{Time to compute embeddings for the Harvard classes dataset.}
 \end{figure}
 
 
-% \section{6. Performance Metrics}
+Clearly, BERT has a much smaller time cost to compute the embeddings for the $3000+$ classes in the filtered down version of the Harvard classes dataset. It takes approximately $256$ seconds to compute the embeddings for the BERT approach whereas it takes over $11503$ seconds to compute the embeddings with the OpenAI approach This could be for a couple of reasons: 
+\begin{itemize}
+	\item Network bottlenecks: currently, generating the OpenAI embeddings is only possible with the API endpoint published by OpenAI. This adds a further network bottleneck to sending and receiving the embeddings data, making it unreliable. 
+	\item Custom tokenizers: as detailed in the above sections, the BERT tokenizer and encoder was optimized for the classes task specifically, making it far faster at encoding text. 
+\end{itemize}
 
-% \subsection{7.1 Speed}
+Next, to evaluate the speed of each of the searches after completing the encodings, I ran an experiment for each of the search techniques with $1000$ randomized search trials for each of the search techniques testing for a variety of different query lengths. After averaging all the results, I obtained the following data for each of the searches: 
+\begin{itemize}
+	\item \texttt{text-embedding-ada-002}: 0.4411180019378662 seconds. 
+	\item BERT: 0.37630796432495117 seconds. 
+	\item Fuzzy search: 0.17109990119934082 seconds. 
+	
+\end{itemize}
 
-% \subsection{7.2 Normalized Discounted Cumulative Gain (NDCG)}
+The differences between search time for each of the approaches is shown in in the following graph: 
 
-% \subsection{7.3 Code Readability and Implementation}
+\begin{figure}[h]
+    \includegraphics[width=8.1cm]{time.png}
+    \caption{Average time for search for each search technique (1000 trials).}
+\end{figure}
 
-% \section{8. Conclusions and Future Directions}
+Thus, in both the embedding computation and search steps, \texttt{text-embedding-ada-002} was the worst search technique in terms of time. As expected, the fuzzy search was the fastest search technique because it takes linear time to compute text differences. 
+
+\subsection{6.2 Normalized Discounted Cumulative Gain (NDCG)}
+
+Measuring the quality of a search result is incredibly difficult because the relative quality of search results is inherently arbitrary. However, after speaking to researchers on the Walmart search team, I chose to analyze search quality using the Normalized Discounted Cumulative Gain (NDCG) technique. 
+
+The NDCG approach is a method for measuring search quality. It relies on human judges to assess the relevance of search results and then computes a metric to compare different search algorithms. The process starts with crowdsourcing, where independent people evaluate search results on a four-point scale: irrelevant (0), partially relevant (1), relevant (2), and perfect (3).
+
+To calculate NDCG, first, the Cumulative Gain (CG) is determined by summing up the relevance scores for each result. The Discounted Cumulative Gain (DCG) then adjusts the CG by dividing the score by the rank (or log of the rank) to account for the importance of higher-ranked results. The Ideal Discounted Cumulative Gain (iDCG) represents the best possible DCG score given the results. Finally, the NDCG is calculated by dividing the DCG by the iDCG, allowing for comparison of scores across different queries.
+
+By averaging NDCG values across thousands of queries, the performance of different algorithms can be compared using statistical tests. The NDCG approach, along with other metrics, helps determine which search algorithm is superior.
+
+To compare each of the search techniques, I set up my own NDCG experiment 
+by administering a survey to $10$ computer science about which search responses were most relevant to the following search query: 
+\begin{center}
+	\texttt{Data structures and algorithms classes for computer science students.}
+\end{center}
+
+For each search approach, I administered a 
+
+
+
+% \section{7. Conclusions and Future Directions}
+
+% \section{8. Sources}
 
 \end{document}
