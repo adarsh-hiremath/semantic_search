@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  5 MAY 2023 15:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  5 MAY 2023 20:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -574,7 +574,11 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 224.
 LaTeX Font Info:    Trying to load font information for T1+pplx on input line 33.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/t1pplx.fd
 File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
-) (./template.aux)
+) (./template.aux
+
+LaTeX Warning: Label `fig:ex1' multiply defined.
+
+)
 \openout1 = `template.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -772,32 +776,80 @@ File: fuzzy.png Graphic file (type png)
 Package pdftex.def Info: fuzzy.png  used on input line 187.
 (pdftex.def)             Requested size: 230.46748pt x 119.5969pt.
  [3 <./fuzzy.png>]
-Underfull \hbox (badness 1205) in paragraph at lines 228--229
-[]\T1/pplx/m/n/10 (+20) Before nu-mer-i-cally quan-ti-fy-ing dif-fer-ences in
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+[]\T1/cmtt/m/n/10 Christianity, Identity and Civil Society
  []
 
-[4
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+[]\T1/cmtt/m/n/10 Introduction to African Languages and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
+[]\T1/cmtt/m/n/10 Christianity, Identity and Civil Society
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--269
+[]\T1/cmtt/m/n/10 African Literature and Culture Since
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 305--306
+[]\T1/cmtt/m/n/10 Christianity, Identity and Civil Society
+ []
+
+[4]
+Underfull \hbox (badness 2189) in paragraph at lines 337--339
+\T1/pplx/m/n/10 (+20) also ex-pect BERT to per-form far bet-ter than
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 375--376
+[]\T1/cmtt/m/n/10 Discrete Mathematics for Computer
+ []
+
+
+Underfull \hbox (badness 4120) in paragraph at lines 387--388
+\T1/pplx/m/n/10 (+20) stand the mean-ing of a word, whereas
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 404--405
+[]\T1/cmtt/m/n/10 Christianity, Identity and Civil Society
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 410--410
+[]\T1/pplx/b/n/9 (+20) Figure 10: |\T1/pplx/m/it/9 (+20) An ex-am-ple query to the \T1/cmtt/m/it/9 text-embedding
+ []
+
+[6
 
 ] (./template.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 89C27D8F1E6C5A0508A7E44EEE778A71;1579.
+(rerunfilecheck)             Checksum: D2421249C015A1479C1CE76A9EECFF25;1579.
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23547 strings out of 478268
- 403124 string characters out of 5846347
- 1411434 words of memory out of 5000000
- 41097 multiletter control sequences out of 15000+600000
- 523898 words of font info for 273 fonts, out of 8000000 for 9000
+ 23611 strings out of 478268
+ 403781 string characters out of 5846347
+ 1412241 words of memory out of 5000000
+ 41104 multiletter control sequences out of 15000+600000
+ 526548 words of font info for 309 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,82p,1052b,2033s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (4 pages, 170453 bytes).
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfit0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on template.pdf (6 pages, 204884 bytes).
 PDF statistics:
- 199 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
- 93 named destinations out of 1000 (max. 500000)
- 79971 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 224 PDF objects out of 1000 (max. 8388607)
+ 198 compressed objects within 2 object streams
+ 105 named destinations out of 1000 (max. 500000)
+ 80483 words of extra memory for PDF output out of 89155 (max. 10000000)
 

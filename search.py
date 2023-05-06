@@ -16,7 +16,7 @@ import logging
 import time
 
 
-openai.api_key = "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"
+openai.api_key = "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"
 logging.getLogger("transformers").setLevel(logging.CRITICAL)
 model_name = "bert-base-uncased"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -78,6 +78,8 @@ def load_bert_classes_and_embeddings():
             count += 1
         except:
             print("Embedding for class " + course["Name"] + " failed")
+
+    print("Embeddings generated: " + str(count))
 
     with open('courses_bert_embeddings.json', 'w') as f:
         json.dump(courses, f)
@@ -243,13 +245,13 @@ def openai_search(query, pprint=True, n=3):
 
 
 if __name__ == "__main__":
-    start_time = time.time()
-    load_bert_classes_and_embeddings()
-    end_time = time.time()
-    print("Time to compute BERT embeddings: " + str(end_time - start_time))
-    print()
+    # start_time = time.time()
+    # load_bert_classes_and_embeddings()
+    # end_time = time.time()
+    # print("Time to compute BERT embeddings: " + str(end_time - start_time))
+    # print()
 
-    print(calculate_json_length('courses_bert_embeddings.json'))
+    # print(calculate_json_length('courses_bert_embeddings.json'))
 
     while (True):
         print()
@@ -276,13 +278,6 @@ if __name__ == "__main__":
             print("Results using fuzzy matching:")
             print()
             fuzzy_result = fuzzy_search(query)
-
-        elif (search_type == "4"):
-            query = input("Enter your search query: ")
-            print()
-            print("Results using TF-IDF retrieval:")
-            print()
-            tfidf_result = tfidf_search(query)
 
         else:
             print()

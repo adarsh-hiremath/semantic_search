@@ -940,6 +940,7 @@ INPUT ./fuzzy.png
 INPUT fuzzy.png
 INPUT ./fuzzy.png
 INPUT ./fuzzy.png
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/ecit0900.tfm
 INPUT template.aux
 INPUT ./template.out
 INPUT ./template.out
@@ -947,6 +948,7 @@ INPUT template.run.xml
 OUTPUT template.run.xml
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfit0900.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb

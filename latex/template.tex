@@ -225,14 +225,192 @@ While Levenshtein distance is a great matching technique for smaller queries and
 
 \section{5. Result Sampling}
 
-Before numerically quantifying differences in search techniques, I wanted to 
-
+Before quantifying the differences in search techniques numerically, I wanted to document notable search-response results for each search technique to confirm the notion that an embeddings-based search would be better than naive approaches.
 
 \subsection{5.1 text-embedding-ada-002}
 
+Unlike my.Harvard's native search, \texttt{text-embeddi}
+\texttt{ng-ada-002} is exceptional at dealing with search queries that don't directly correspond with course names or contain spelling errors. To illustrate the power of embeddings-based semantics, we examine a couple examples:
+
+
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{I want to take classes about African Studies with an emphasis on Christianity or culture.} \\
+		\texttt{}\\
+		\texttt{Output:} 
+		\begin{itemize}
+			\item \texttt{Christianity, Identity and Civil Society in African}
+			\item \texttt{Introduction to African Studies}
+			\item \texttt{Introduction to African American Studies}
+		\end{itemize}		
+	\end{center}
+
+	\caption{An example query to the \texttt{text-embedding} \texttt{-ada-002} search engine. Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+	\label{fig:ex1}
+\end{figure}
+
+
+The OpenAI-enabled search engine returned three relevant search results, sorted from most to least relevant. The class descriptions for Christianity, Identity and Civil Society in African matched the search query most heavily, while Introduction to African Studies had a class description that aligned more similarly with the search query than Introduction to African American Studies.  
+
+To verify whether the OpenAI-enabled approach truly has semantic understandings of search queries, we can even replace most words in the search query with a synonym and obtain similar performance: 
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{I would be interested in taking courses about African Learnings with an priority on Catholicism or culture.} \\
+		\texttt{}\\
+		\texttt{Output:} 
+		\begin{itemize}
+			\item \texttt{Introduction to African Languages and Cultures}
+			\item \texttt{Christianity, Identity and Civil Society in African}
+			\item \texttt{African Literature and Culture Since 1800}
+		\end{itemize}		
+	\end{center}
+
+	\caption{An example query to the \texttt{text-embedding} \texttt{-ada-002} search engine. Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+\end{figure}
+
+While slightly different, the search engine returns highly relevant results when given a search query modified with synonyms. However, unlike the embeddings-based approach, my.Harvard's native functionality fails with similar queries. This is easily verifiable by inputting the same search query into my.Harvard: 
+
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{I want to take classes about African Studies with an emphasis on Christianity or culture.} \\
+		\texttt{}\\
+		\texttt{Output: }\\
+		\texttt{No results found. Please refine your search and try again.}		 
+	\end{center}
+	\caption{An example query to my.Harvard's native search engine.}
+	\label{fig:ex2}
+\end{figure}
+
+
+The \texttt{text-embedding-ada-002} approach is highly effective in understanding search semantics, even when there are spelling errors in the search query. In fact, modifying the previous search query with spelling errors results in a response that is nearly identical.
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{I wnt take clss abt African Stds with emphs on Christianity or culture.} \\
+		\texttt{}\\
+		\texttt{Output:} 
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\begin{itemize}
+			\item \texttt{Christianity, Identity and Civil Society in African}
+			\item \texttt{Introduction to African Popular Culture}
+			\item \texttt{Introduction to African American Studies}
+		\end{itemize}		
+	\end{center}
+
+	\caption{An example query to the \texttt{text-embedding} \texttt{-ada-002} search engine. Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+\end{figure}
+
+
+The embeddings model overweights for words spelled correctly, which is why the previously second ranked response is removed in favor of "Introduction to African Popular Culture" when "culture" is one of the only words in the search query that is spelled correctly. 
+
+For my.Harvard's search, replacing even one character from the course title results in an invalid search query. Here, we search directly for the class name with but spell "Christianity" as "Christinity": 
+
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{Christinity, Identity and Civil Society in African.} \\
+		\texttt{}\\
+		\texttt{Output: } \\
+		\texttt{No results found. Please refine your search and try again. }\\
+	\end{center}
+	\label{fig:ex4}
+	\caption{An example query to my.Harvard's native search engine.}
+\end{figure}
+
+
+Ultimately, without even conducting any numerical tests, it is already clear that an embeddings-based approach is far more powerful than search protocols implemented in many contexts, including my.Harvard. 
+
 \subsection{5.2 BERT}
 
+Like the \texttt{text-embedding-ada-002} 
+approach, we also expect BERT to perform far better than my.Harvard's native search. However, qualitative results indicate that there is a marked difference between BERT and \texttt{text-embedding-ada-002} in terms of performance. First, repeating the previous specific search query about classes about African studies shows noisier results for the top $3$ responses: 
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{I want to take classes about African Studies with an emphasis on Christianity or culture.}\\
+		\texttt{}\\
+		\texttt{Output:}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\begin{itemize}
+			\item \texttt{Methods of Behavioral Research}
+			\item \texttt{Methods of Behavioral Research}
+			\item \texttt{Ancient Greek Political Thought}
+		\end{itemize}		
+	\end{center}
+
+	\caption{An example query to the BERT search engine. Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+	\label{fig:ex6}
+\end{figure}
+
+
+While the OpenAI-enabled search engine returned three relevant search results, sorted from most to least relevant, the BERT search approach did not return any relevant responses for the exact same search query about African Studies classes with an emphasis on Christianity or culture. This indicates that the BERT approach is less effective in understanding search semantics compared to the embeddings-based approach. 
+
+While unreliable, BERT search does handle some search queries exceptionally well. For instance, take the following example for a query for discrete mathematics classes:
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{Discrete mathematics for computer science majors.} \\
+		\texttt{}\\
+		\texttt{Output:} 
+		\begin{itemize}
+			\item \texttt{Studies in Real and Complex analysis}
+			\item \texttt{Discrete Mathematics for Computer Science}
+			\item \texttt{Studies in Algebra and Group Theory}
+		\end{itemize}		
+	\end{center}
+	\caption{An example query to the BERT search engine. Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+\end{figure}
+
+This example clearly illustrates the power of semantics. Although "discrete mathematics" is nowhere to be found within the course titles or descriptions for two of the responses, the embeddings model is able to associate "discrete mathematics" with semantically similar topics such as "abstract algebra." 
+
+Although BERT is a powerful model, it may not be the best choice for semantic search due to its inconsistency. OpenAI's embeddings approach achieves similar performance on the above search queries (including the discrete mathematics example) without the inconsistency of BERT. There could be several reasons why BERT may be less effective at semantic search than Open AI's embeddings model. 
+
+\begin{itemize}
+	\item  BERT is a far more contextual model that relies on the surrounding words to understand the meaning of a word, whereas \texttt{text-embedding-ada-002} does not require as much context to generate a fixed vector representation of words or phrases. 
+	\item BERT is trained on less text than text-embedding-ada-002, which can lead to BERT being less effective at identifying the most relevant information for a given search query.
+\end{itemize}
+
 \subsection{5.3 Fuzzy Matching}
+
+
+While the Levenshtein fuzzy matching approach performs well on small bodies of text such as just the course name, it fails to produce relevant results when searching through the entire body of text (course name, course description, and professor name) or when there are spelling errors. This is in contrast to the OpenAI embeddings-based approach and BERT, which are highly effective in understanding search semantics, even when there are spelling errors in the search query or the body of text to be searched is extremely large. 
+
+
+\begin{figure}[h]
+	\begin{center}
+		\texttt{Query:} \\
+		\texttt{I want to take classes about African Studies with an emphasis on Christianity or culture.} \\
+		\texttt{}\\
+		\texttt{Output:} 
+		\begin{itemize}
+			\item \texttt{Christianity, Identity and Civil Society in African}
+			\item \texttt{Introduction to African Studies}
+			\item \texttt{Introduction to African American Studies}
+		\end{itemize}		
+	\end{center}
+
+	\caption{An example query to the \texttt{text-embedding} \texttt{-ada-002} search engine. Although class descriptions are used for the search responses, they are omitted for length. Additionally, the results are ranked in descending order based on relevance. Only 3 responses are returned per query.}
+	\label{fig:ex1}
+\end{figure}
+
 
 % \section{6. Performance Metrics}
 
