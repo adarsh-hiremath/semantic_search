@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  5 MAY 2023 22:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  5 MAY 2023 23:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -744,90 +744,96 @@ File: ts1pplx.fd 2004/09/06 font definitions for TS1/pplx.
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 84.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 87.
 
-Underfull \hbox (badness 10000) in paragraph at lines 137--139
+Underfull \hbox (badness 10000) in paragraph at lines 140--142
 \T1/cmtt/m/n/10 a-002\T1/pplx/m/n/10 (+20) , uti-lizes a transformer-based deep
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 137--139
+Underfull \hbox (badness 10000) in paragraph at lines 140--142
 \T1/pplx/m/n/10 (+20) learn-ing ar-chi-tec-ture to learn em-bed-dings.
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 137--139
+Underfull \hbox (badness 1648) in paragraph at lines 140--142
 \T1/cmtt/m/n/10 text-embedding-ada-002 \T1/pplx/m/n/10 (+20) out-per-forms the other
  []
 
-<embedding.png, id=69, 434.62375pt x 374.39874pt>
+<embedding.png, id=77, 434.62375pt x 374.39874pt>
 File: embedding.png Graphic file (type png)
 <use embedding.png>
-Package pdftex.def Info: embedding.png  used on input line 142.
+Package pdftex.def Info: embedding.png  used on input line 145.
 (pdftex.def)             Requested size: 230.46748pt x 198.53322pt.
 [2 <./embedding.png>]
-<fuzzy.png, id=120, 371.3875pt x 192.72pt>
+<fuzzy.png, id=128, 371.3875pt x 192.72pt>
 File: fuzzy.png Graphic file (type png)
 <use fuzzy.png>
-Package pdftex.def Info: fuzzy.png  used on input line 187.
+Package pdftex.def Info: fuzzy.png  used on input line 190.
 (pdftex.def)             Requested size: 230.46748pt x 119.5969pt.
  [3 <./fuzzy.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
 []\T1/cmtt/m/n/10 Christianity, Identity and Civil Society
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
 []\T1/cmtt/m/n/10 Introduction to African Languages and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--268
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
 []\T1/cmtt/m/n/10 Christianity, Identity and Civil Society
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--269
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
 []\T1/cmtt/m/n/10 African Literature and Culture Since
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
 []\T1/cmtt/m/n/10 Christianity, Identity and Civil Society
  []
 
 [4]
-Underfull \hbox (badness 2189) in paragraph at lines 337--339
+Underfull \hbox (badness 2189) in paragraph at lines 340--342
 \T1/pplx/m/n/10 (+20) also ex-pect BERT to per-form far bet-ter than
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 375--376
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 378--379
 []\T1/cmtt/m/n/10 Discrete Mathematics for Computer
  []
 
 
-Underfull \hbox (badness 4120) in paragraph at lines 387--388
+Underfull \hbox (badness 4120) in paragraph at lines 390--391
 \T1/pplx/m/n/10 (+20) stand the mean-ing of a word, whereas
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 404--405
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
 []\T1/cmtt/m/n/10 Directed Study in History of Art and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 405--406
+Underfull \hbox (badness 10000) in paragraph at lines 408--409
 []\T1/cmtt/m/n/10 Directed Study in History of Art and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 427--428
+Underfull \hbox (badness 10000) in paragraph at lines 430--431
 []\T1/cmtt/m/n/10 Directed Study in History of Art and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 428--429
+Underfull \hbox (badness 10000) in paragraph at lines 431--432
 []\T1/cmtt/m/n/10 Directed Study in History of Art and
  []
 
@@ -835,48 +841,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 428--429
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 445--446
+Underfull \hbox (badness 10000) in paragraph at lines 448--449
 []\T1/cmtt/m/n/10 Introduction to African Languages and
  []
 
 [6]
-<embeddingscal.png, id=186, 602.25pt x 372.39125pt>
+<embeddingscal.png, id=194, 602.25pt x 372.39125pt>
 File: embeddingscal.png Graphic file (type png)
 <use embeddingscal.png>
-Package pdftex.def Info: embeddingscal.png  used on input line 467.
+Package pdftex.def Info: embeddingscal.png  used on input line 470.
 (pdftex.def)             Requested size: 230.46748pt x 142.50453pt.
-<time.png, id=187, 602.25pt x 372.39125pt>
+<time.png, id=195, 602.25pt x 372.39125pt>
 File: time.png Graphic file (type png)
 <use time.png>
-Package pdftex.def Info: time.png  used on input line 489.
+Package pdftex.def Info: time.png  used on input line 492.
 (pdftex.def)             Requested size: 230.46748pt x 142.50453pt.
 
-Underfull \hbox (badness 1596) in paragraph at lines 493--494
+Underfull \hbox (badness 1596) in paragraph at lines 496--497
 \T1/pplx/m/n/10 (+20) search steps, \T1/cmtt/m/n/10 text-embedding-ada-002 \T1/pplx/m/n/10 (+20) was the
  []
 
-[7 <./embeddingscal.png> <./time.png>] [8
+[7 <./embeddingscal.png> <./time.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 562--563
+[]\T1/pplx/m/n/10 (+20) Confirming our ini-tial qual-i-ta-tive in-tu-
+ []
+
+
+Underfull \hbox (badness 1158) in paragraph at lines 562--563
+\T1/pplx/m/n/10 (+20) itions, the com-puted NDCG val-ues show that
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
+\T1/pplx/m/n/10 (+20) sur-ing Search Rel-e-vance. Re-trieved from
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
+\T1/pplx/m/n/10 (+20) https://tech.ebayinc.com/engineering/measuring-
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 602--603
+\T1/pplx/m/n/10 (+20) from https://rom1504.medium.com/semantic-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 602--603
+\T1/pplx/m/n/10 (+20) search-with-embeddings-index-anything-
+ []
+
+[9
 
 ] (./template.aux)
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 436E996418F80B220FE29A08D7099A91;2170.
+(rerunfilecheck)             Checksum: E06E5E7792AD6C9F3C2FBF47FD2B3019;2507.
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23675 strings out of 478268
- 404523 string characters out of 5846347
- 1412204 words of memory out of 5000000
- 41119 multiletter control sequences out of 15000+600000
- 528773 words of font info for 339 fonts, out of 8000000 for 9000
+ 23689 strings out of 478268
+ 404653 string characters out of 5846347
+ 1411204 words of memory out of 5000000
+ 41121 multiletter control sequences out of 15000+600000
+ 529453 words of font info for 346 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,82p,1052b,2033s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfit0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (8 pages, 244137 bytes).
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfit0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on template.pdf (9 pages, 258512 bytes).
 PDF statistics:
- 262 PDF objects out of 1000 (max. 8388607)
- 227 compressed objects within 3 object streams
- 114 named destinations out of 1000 (max. 500000)
- 80517 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 282 PDF objects out of 1000 (max. 8388607)
+ 244 compressed objects within 3 object streams
+ 117 named destinations out of 1000 (max. 500000)
+ 80533 words of extra memory for PDF output out of 89155 (max. 10000000)
 

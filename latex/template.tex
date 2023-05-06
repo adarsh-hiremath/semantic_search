@@ -52,6 +52,9 @@ In December 2022, OpenAI released its newest embedding model, \texttt{text-embed
 	\item Building a web application to search Harvard classes and releasing it to the Harvard community. 
 \end{itemize}
 
+My code can be found at the Github repository linked in the sources section of this paper. 
+
+
 \section{2. Literature Review}
 
 Literature in the field of text embeddings for information retrieval is largely isolated to individual methods, with little work done to compare the effectiveness of different approaches. My paper aims to address this gap by evaluating the performance of three different search methods: \texttt{text-embedding-ada-002}, BERT, and fuzzy matching. From my literature review, I drew on the following papers the most: 
@@ -505,15 +508,105 @@ By averaging NDCG values across thousands of queries, the performance of differe
 To compare each of the search techniques, I set up my own NDCG experiment 
 by administering a survey to $10$ computer science about which search responses were most relevant to the following search query: 
 \begin{center}
-	\texttt{Data structures and algorithms classes for computer science students.}
+	\texttt{Computer science algorithms classes.}
 \end{center}
 
-For each search approach, I administered a 
+For each search approach, I provided the top ranked response to the respondents. The top responses for each method were as follows: 
+\begin{itemize}
+	\item \texttt{text-embedding-ada-002}: Data structures and algorithms.
+	\item BERT: Studies in Real and Complex analysis. 
+	\item Fuzzy matching: Classics of Computer Science.
+\end{itemize}
+
+Unsurprisingly, all $10$ respondents converged on the exact same ranking between the different search techniques, making computing the averages for the responses relatively straightforward. The respondents all assigned the OpenAI search response a $3$, the BERT search response a $2$, and the fuzzy matching response a $1$. This translates to the following judgement table:
+\begin{center}
+	\begin{tabular}{lll}
+		\toprule
+		Rank & Search Technique & Gain \\
+		\midrule
+		1 & text-embedding-ada-002 & 3 \\
+		2 & BERT & 2 \\
+		3 & fuzzy matching & 1 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+From there, we can also calculate the discounted gain: 
+
+\begin{center}
+	\begin{tabular}{lll}
+		\toprule
+		Rank & Search Technique  & DCG \\
+		\midrule
+		1 & text-embedding-ada-002 & 3/1 = 3 \\
+		2 & BERT & 2/2 = 1 \\
+		3 & fuzzy matching & 1/3 $\approx$ 0.33 \\
+		\bottomrule
+	\end{tabular}	
+\end{center}
+
+Finally, calculating for our NDCG, we get the following values: 
+
+\begin{center}
+	\begin{tabular}{lll}
+		\toprule
+		Search Technique & DCG  & NDCG \\
+		\midrule
+		text-embedding-ada-002 & 3  & 0.69 \\
+		BERT & 1  & 0.23 \\
+		fuzzy matching & 0.33  & 0.08 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Confirming our initial qualitative intuitions, the computed NDCG values show that \texttt{text-embedding-ada-002} returns the most relevant results (NDCG $\approx$ 0.69), followed by BERT (NDCG $\approx$ 0.23), and then fuzzy matching (NDCG $\approx$ 0.08).
+
+\section{7. Conclusions and Future Directions}
+
+Overall, this project confirms that OpenAI's most recent embeddings model is indeed the most accurate model for search. In cases where speed isn't a large concern, using the embeddings-based approach yields highly accurate and applicable search results. 
+
+In terms of releasing my semantic search engine for Harvard classes to the Harvard community, I have already created, tested, and deployed a Fast API endpoint for anybody to use on Amazon's EC2. I have already distributed this API endpoint to members of the Harvard community in case they want to test my search engine. 
 
 
+For future directions of this project, I intend to do the following: 
+\begin{itemize}
+	\item Build a UI for my web application for Harvard search. This would likely be most useful before the next semester when students are picking their classes. 
+	\item Test the OpenAI search endpoint which is already optimized for search instead of using \texttt{text-embedding-ada-002}. 
+	\item Further optimize the BERT approach to weight course titles, course descriptions, and course professors differently by creating a formula for similarity using the embeddings. 
+\end{itemize}
 
-% \section{7. Conclusions and Future Directions}
+\section{8. Sources}
 
-% \section{8. Sources}
+Since this project involved implementing custom search strategies on a custom dataset, I did not find myself relying super heavily on any individual papers or resources other than publically available documentation (and GPT for debugging). I also wrote all of the code myself, which can be found at the following Github repository: \url{https://github.com/adarsh-hiremath/semantic_search} 
+
+Other resources and papers that I read can be referenced here:
+
+\enter
+
+[1] Neelakantan, A., Chen, B., Manning, C. D. (2022). Text and Code Embeddings by Contrastive Pre-Training.
+
+\enter
+
+[2] Mitra, B., Craswell, N. (2017). Neural Text Embeddings for Information Retrieval. Proceedings of the Tenth ACM International Conference on Web Search and Data Mining.
+
+\enter
+
+[3] Walsh, J., Andrade, H. (2022). Semantic Search With Sentence-BERT for Design Information Retrieval. Proceedings of the 42nd Computers and Information in Engineering Conference (CIE).
+
+\enter
+
+[4] Williams, H. (2010, November 10). Measuring Search Relevance. Retrieved from https://tech.ebayinc.com/engineering/measuring-search-relevance/. 
+
+\enter
+
+[5] Beaumont, R. (2020, December 1). Semantic search with embeddings: index anything. Retrieved from https://rom1504.medium.com/semantic-search-with-embeddings-index-anything-8fb18556443c
+
+\enter
+
+[6] Patel, M. (2019). TinySearch- Semantics based Search Engine using Bert Embeddings. 
+
+\enter 
+
+[7] Farmanbar, M., van Ommeren, N., \& Zhao, B. (2020). Semantic search with domain-specific word-embedding and production monitoring in Fintech.
 
 \end{document}
